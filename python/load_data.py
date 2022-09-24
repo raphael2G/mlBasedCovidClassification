@@ -20,13 +20,15 @@ def process_file(file_name, img_size=224):
     img = img/255.0
     return img, True
 
-def create_data_split(non_covid_file_name_path, covid_file_name_path, shuffle=False, img_size=224, normalize=False):
+def create_data_split(non_covid_file_name_path, covid_file_name_path, items=None, shuffle=False, img_size=224, normalize=False):
     non_covid_file_name_list = open(non_covid_file_name_path).readlines()
     covid_file_name_list = open(covid_file_name_path).readlines()
 
     numpy_data = []
     numpy_labels = []
 
+
+    count = 0
     for non_covid_file_name, covid_file_name in zip(non_covid_file_name_list, covid_file_name_list):
         
         non_covid_file_name = non_covid_file_name.strip()
@@ -44,6 +46,11 @@ def create_data_split(non_covid_file_name_path, covid_file_name_path, shuffle=Fa
         if valid: 
             numpy_data.append(covid_img)
             numpy_labels.append(1)
+
+        if items!=None:
+            count += 1
+            if count == items: 
+                break
 
 
     tensor_data = tf.convert_to_tensor(numpy_data)

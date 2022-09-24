@@ -87,9 +87,9 @@ def test(IMG_PATH):
     print(f'CONFIDENCE: {outputs.max():.4f}%')
     print('COVID DETECTED') if outputs[1] > outputs[0] else print('COVID NOT DETECTED')
 
-# test('data/noncovid_ct_scan_99-66.jpeg')
-# test('data/covid_ct_scan_0-14.jpg')
-# test('data/covid_ct_scan_0-27L.jpg')
+test('data/noncovid_ct_scan_99-66.jpeg')
+test('data/covid_ct_scan_0-14.jpg')
+test('data/covid_ct_scan_0-27L.jpg')
 
 
 
